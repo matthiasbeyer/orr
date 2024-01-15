@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export ORR_URL="https://raw.githubusercontent.com/mediathekview/zapp/main/app/src/main/res/raw/channels.json"
+export ORR_LIST="$HOME/.config/orr_channels.json"
+
+mkdir -p "$(dirname "${ORR_LIST}")"
+curl -s "${ORR_URL}" > "${ORR_LIST}" && echo "List updated." || echo "List update failed."
