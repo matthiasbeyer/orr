@@ -2,8 +2,10 @@
 
 export ORR_LIST="$HOME/.config/orr_channels.json"
 
+ORR_QUALITY="${QUALITY:-min}"
+
 _search="${1}"
 
 selection="$(cat "${ORR_LIST}" | jq '.[] | .name + ";" + .stream_url' --raw-output | fzf -e --delimiter=';' -n 1 --query="${_search}" | cut -d';' -f2)"
 
-mpv -v --hls-bitrate=min "${selection}"
+mpv -v --hls-bitrate="${ORR_QUALITY}" "${selection}"
